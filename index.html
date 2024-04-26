@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="eS">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mover imagen con WASD y límites</title>
+    <style>
+      #jorge {
+        position: absolute;
+        top: 300px;
+        left: 0px;
+        width: 50px;
+        height: 50px;
+      }
+      #juan {
+        position: absolute;
+        top: 300px;
+        right: 0px;
+        width: 50px;
+        height: 50px;
+      }
+      #container {
+        position: absolute;
+        top: 100px;
+        left: 300px;
+
+        width: 1000px;
+        height: 500px;
+        border: 2px solid black;
+        box-sizing: border-box;
+      }
+      .health-bar-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .health-bar {
+        width: 200px;
+        height: 20px;
+        border: 1px solid black;
+        background-color: #ddd;
+        margin-right: 10px;
+      }
+      .health {
+        height: 100%;
+        background-color: green;
+      }
+
+      
+    </style>
+  </head>
+  <body>
+    <div class="vidahereo">
+      <div class="health-bar-container">
+        <div class="health-bar" id="hero-health-bar">
+          <div class="health" style="width: 100%"></div>
+        </div>
+        <span id="hero-health"></span>
+      </div>
+    </div>
+
+    <div class="vidavillano">
+      <div class="health-bar-container">
+        <div class="health-bar" id="enemy-health-bar">
+          <div class="health" style="width: 100%"></div>
+        </div>
+        <span id="enemy-health"></span>
+      </div>
+    </div>
+    
+    <div id="container">
+      <img src="f1.avif" id="jorge" alt="jorge" />
+      <img src="f2.jpg" alt="juan" id="juan" />
+      
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
