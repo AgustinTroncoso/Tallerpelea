@@ -60,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
     imagen2.style.top = posY2 + "px";
   }
 
-  // Detectar las teclas presionadas
   document.addEventListener("keydown", function (event) {
     const tecla = event.key.toLowerCase();
     switch (tecla) {
@@ -118,7 +117,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Actualizar la posición de las imágenes en intervalos regulares
   setInterval(moverImagenes, 50);
   class Character {
     constructor(name, health, damage) {
@@ -128,7 +126,6 @@ document.addEventListener("DOMContentLoaded", function () {
       this.maxhealth = health;
       this.damage = damage;
     }
-    //Verifica si el personaje esta vivo
     isAlive() {
       return this.health > 0;
     }
@@ -150,7 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(`${this.name} deals ${atacar} DMG to ${target.name}`);
     }
 
-    //Retorna la información actual del personaje
     status() {
       return `${this.name} - HP ${this.health}/${this.maxhealth}`;
     }
@@ -175,13 +171,12 @@ document.addEventListener("DOMContentLoaded", function () {
       enemy.health
   );
   fight(hero, enemy);
-  //Función para combatir
   async function fight(firstCharacter, secondCharacter) {
     console.log("Empieza el combate!");
     updateHealthBars();
     while (true) {
       if (firstCharacter.isAlive()) {
-        await delay(100); // Delay for 1 second
+        await delay(100);
         updateHealthBars();
       } else {
         console.log(`${firstCharacter.name} died!`);
@@ -189,9 +184,8 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
       }
 
-      // Segundo personaje ataca si está vivo
       if (secondCharacter.isAlive()) {
-        await delay(100); // Delay for 1 second
+        await delay(100); 
         updateHealthBars();
       } else {
         console.log(`${secondCharacter.name} died!`);
@@ -200,25 +194,18 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   }
-  //Comenzar combate
-
   fight(hero, enemy);
 
   document.addEventListener("keydown", function (event) {
-    // Verificar si la tecla presionada es "x"
-    if (event.key === "r") {
-      // Ataque del primer personaje
+   if (event.key === "r") {
       hero.atacar(enemy);
     } else if (event.key === "u") {
-      // Ataque del segundo personaje
-      enemy.atacar(hero);
+     enemy.atacar(hero);
     }
   });
 
-  //Función para actualizar las barras de salud en la interfaz
   function updateHealthBars() {
-    // Update hero's health bar
-    const heroHealthBar = document
+   const heroHealthBar = document
       .getElementById("hero-health-bar")
       .querySelector(".health");
     const heroHealthPercent = (hero.health / hero.maxhealth) * 100;
@@ -226,7 +213,6 @@ document.addEventListener("DOMContentLoaded", function () {
       heroHealthPercent < 0 ? 0 : heroHealthPercent
     }%`;
 
-    // Update enemy's health bar
     const enemyHealthBar = document
       .getElementById("enemy-health-bar")
       .querySelector(".health");
@@ -235,12 +221,10 @@ document.addEventListener("DOMContentLoaded", function () {
       enemyHealthPercent < 0 ? 0 : enemyHealthPercent
     }%`;
 
-    // Update hero's health text
     document.getElementById("hero-health").innerText = `${hero.name} - HP ${
       hero.health < 0 ? 0 : hero.health
     }/${hero.maxhealth}`;
 
-    // Update enemy's health text
     document.getElementById("enemy-health").innerText = `${enemy.name} - HP ${
       enemy.health < 0 ? 0 : enemy.health
     }/${enemy.maxhealth}`;
@@ -248,12 +232,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-  //Función para introducir un retraso
   function delay(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 });
-  //Función para mostrar al ganador
   function displayWinner(winner) {
     const winnerText = document.createElement("p");
     winnerText.textContent = `${winner.name} won the fight!`;
